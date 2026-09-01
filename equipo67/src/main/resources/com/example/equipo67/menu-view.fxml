@@ -14,7 +14,8 @@
     </padding>
     <Label text="Menú de ejercicios" style="-fx-font-size: 40px"/>
     <Label text="¿A qué pantalla desea ingresar?"/>
-    <VBox>
+    <VBox alignment="CENTER">
         <ListView fx:id="lsvwPantalla" prefHeight="100"/>
+        <Button fx:id="btnIniciarPantalla" text="Entrar"/>
     </VBox>
 </VBox>

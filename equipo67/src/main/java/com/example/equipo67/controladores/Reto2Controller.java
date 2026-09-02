@@ -76,51 +76,23 @@ public class Reto2Controller {
         String codigo = txtCodigo.getText().trim();
         String productor = txtProductor.getText().trim();
         String cantidadTexto = txtCantidad.getText().trim();
-
-        if (codigo.isEmpty()
-                || productor.isEmpty()
-                || cantidadTexto.isEmpty()) {
-
-            mostrarAlerta(
-                    Alert.AlertType.WARNING,
-                    "Campos vacíos",
-                    "Debe completar todos los campos."
-            );
-
+        if (codigo.isEmpty() || productor.isEmpty() || cantidadTexto.isEmpty()) {
+            mostrarAlerta(Alert.AlertType.WARNING,"Campos vacíos","Debe completar todos los campos.");
             return;
         }
 
         try {
-
             double cantidad = Double.parseDouble(cantidadTexto);
-
             if (cantidad <= 0) {
-
-                mostrarAlerta(
-                        Alert.AlertType.WARNING,
-                        "Cantidad incorrecta",
-                        "La cantidad debe ser mayor que cero."
-                );
-
+                mostrarAlerta(Alert.AlertType.WARNING,"Cantidad incorrecta","La cantidad debe ser mayor que cero.");
                 return;
             }
 
-            /*
-             * Si loteEditando es null,
-             * estamos registrando uno nuevo.
-             */
+            //Si loteEditando es null se registra uno nuevo
             if (loteEditando == null) {
-
                 for (LoteCafe lote : listaLotes) {
-
                     if (lote.getCodigo().equalsIgnoreCase(codigo)) {
-
-                        mostrarAlerta(
-                                Alert.AlertType.WARNING,
-                                "Código repetido",
-                                "Ya existe un lote con ese código."
-                        );
-
+                        mostrarAlerta(Alert.AlertType.WARNING,"Código repetido","Ya existe un lote con ese código.");
                         return;
                     }
                 }
@@ -249,73 +221,41 @@ public class Reto2Controller {
     }
 
     private void eliminarLote() {
-
-        LoteCafe lote =
-                tablaLotes.getSelectionModel().getSelectedItem();
-
+        LoteCafe lote = tablaLotes.getSelectionModel().getSelectedItem();
         if (lote == null) {
-
-            mostrarAlerta(
-                    Alert.AlertType.WARNING,
-                    "Seleccione un lote",
-                    "Primero debe seleccionar un lote."
-            );
-
+            mostrarAlerta(Alert.AlertType.WARNING,"Seleccione un lote","Primero debe seleccionar un lote.");
             return;
         }
 
-        Alert confirmacion =
-                new Alert(Alert.AlertType.CONFIRMATION);
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
 
         confirmacion.setTitle("Confirmar eliminación");
+        confirmacion.setHeaderText("¿Desea eliminar este lote?");
 
-        confirmacion.setHeaderText(
-                "¿Desea eliminar este lote?"
-        );
+        confirmacion.setContentText("Lote: " + lote.getCodigo() + "\nProductor: " + lote.getProductor());
 
-        confirmacion.setContentText(
-                "Lote: "
-                        + lote.getCodigo()
-                        + "\nProductor: "
-                        + lote.getProductor()
-        );
+        Optional<ButtonType> resultado = confirmacion.showAndWait();
 
-        Optional<ButtonType> resultado =
-                confirmacion.showAndWait();
-
-        if (resultado.isPresent()
-                && resultado.get() == ButtonType.OK) {
-
+        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             listaLotes.remove(lote);
-
             limpiarCampos();
-
             loteEditando = null;
-
             btnGuardar.setText("Guardar lote");
         }
     }
 
     private void limpiarCampos() {
-
         txtCodigo.clear();
         txtProductor.clear();
         txtCantidad.clear();
-
         txtCodigo.requestFocus();
     }
 
-    private void mostrarAlerta(
-            Alert.AlertType tipo,
-            String titulo,
-            String mensaje) {
-
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
-
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
-
         alerta.showAndWait();
     }
 }

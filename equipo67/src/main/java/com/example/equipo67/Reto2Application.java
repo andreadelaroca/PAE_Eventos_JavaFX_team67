@@ -10,24 +10,11 @@ public class Reto2Application extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader =
-                new FXMLLoader(
-                        Reto2Application.class.getResource(
-                                "/com/example/equipo67/reto2-view.fxml"
-                        )
-                );
-
-        Scene scene =
-                new Scene(loader.load());
-
-        stage.setTitle(
-                "Reto 2 - Recepción de Café"
-        );
-
+        FXMLLoader loader = new FXMLLoader(Reto2Application.class.getResource("/com/example/equipo67/reto2-view.fxml"));
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Recepción de Café");
         stage.setScene(scene);
-
         stage.setResizable(false);
-
         stage.show();
     }
 

@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class MenuController {
 
-    ObservableList<String> pantallas = FXCollections.observableArrayList("Inventario de pulpería","Recepción de café", "Tienda de artesanías");
+    private final ObservableList<String> pantallas = FXCollections.observableArrayList("Inventario de pulpería","Recepción de café", "Tienda de artesanías");
 
     @FXML
     private ListView<String> lsvwPantalla;
@@ -30,66 +30,46 @@ public class MenuController {
 
     @FXML
     public void entrarOnClick() {
-        if (lsvwPantalla.getSelectionModel().getSelectedItem() == "Inventario de pulpería") {
-            abrirReto1();
+        String pantalla = lsvwPantalla.getSelectionModel().getSelectedItem();
+
+        if (pantalla == null) {
+            mostrarAlerta("Advertencia", "No se ha seleccionado ninguna pantalla");
+            return;
         }
-        else if (lsvwPantalla.getSelectionModel().getSelectedItem() == "Recepción de café") {
-            abrirReto2();
-        }
-        else if (lsvwPantalla.getSelectionModel().getSelectedItem() == "Tienda de artesanías") {
-            abrirReto3();
-        }
-        else {
-            mostrarAlerta("Error", "No se ha seleccionado ninguna pantalla.");
-        }
+        switch (pantalla) {
+            case "Inventario de pulpería":
+                abrirPantalla("reto1-view.fxml", "Inventario de pulpería");
+                break;
+            case "Recepción de café":
+                abrirPantalla("reto2-view.fxml", "Recepción de café");
+                break;
+            case "Tienda de artesanías":
+                abrirPantalla("reto3-view.fxml", "Tienda de artesanías");
+                break;
+            default:
+                mostrarAlerta("Error", "Opción no válida seleccionada");
+                break;
+    }
     }
 
-    private void abrirReto1() {
+    private void abrirPantalla(String fxml, String titulo) {
         try {
-            FXMLLoader Loader =new FXMLLoader(getClass().getResource("/com/example/equipo67/reto1-view.fxml"));
-            Scene scene = new Scene(Loader.load());
-            Stage stage = (Stage) lsvwPantalla.getScene().getWindow();
+            FXMLLoader loader =new FXMLLoader(MenuApplication.class.getResource(fxml));
+            if (loader.getLocation() == null) {
+                mostrarAlerta("Error", "Dirección FXML inválida: " + fxml);
+                return;
+            }
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) btnIniciarPantalla.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Inventario de pulpería");
+            stage.setTitle(titulo);
             stage.centerOnScreen();
         }
-
         catch (IOException e) {
             mostrarAlerta("Error", "No se pudo abrir la pantalla seleccionada");
             e.printStackTrace();
         }
-    }
 
-    private void abrirReto2() {
-        try {
-            FXMLLoader Loader =new FXMLLoader(getClass().getResource("/com/example/equipo67/reto2-view.fxml"));
-            Scene scene = new Scene(Loader.load());
-            Stage stage = (Stage) lsvwPantalla.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Recepción de café");
-            stage.centerOnScreen();
-        }
-
-        catch (IOException e) {
-            mostrarAlerta("Error", "No se pudo abrir la pantalla seleccionada");
-            e.printStackTrace();
-        }
-    }
-
-    private void abrirReto3() {
-        try {
-            FXMLLoader Loader =new FXMLLoader(getClass().getResource("/com/example/equipo67/reto3-view.fxml"));
-            Scene scene = new Scene(Loader.load());
-            Stage stage = (Stage) lsvwPantalla.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Tienda de inventario");
-            stage.centerOnScreen();
-        }
-
-        catch (IOException e) {
-            mostrarAlerta("Error", "No se pudo abrir la pantalla seleccionada");
-            e.printStackTrace();
-        }
     }
 
     private void mostrarAlerta(String titulo, String mensaje){

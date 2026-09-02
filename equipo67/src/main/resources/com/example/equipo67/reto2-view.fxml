@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
@@ -83,3 +84,17 @@
     </HBox>
 
 </VBox>
+=======
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.equipo67.controladores.Reto2Controller"
+            prefHeight="400.0" prefWidth="600.0">
+
+</AnchorPane>
+>>>>>>> 092cb5d1a959eeb5d09b01ca9fdb18f84c2ea64e

@@ -1,5 +1,6 @@
 package com.example.equipo67.controladores;
 
+<<<<<<< HEAD
 import com.example.equipo67.modelos.LoteCafe;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -318,4 +319,7 @@ public class Reto2Controller {
 
         alerta.showAndWait();
     }
+=======
+public class Reto2Controller {
+>>>>>>> 092cb5d1a959eeb5d09b01ca9fdb18f84c2ea64e
 }

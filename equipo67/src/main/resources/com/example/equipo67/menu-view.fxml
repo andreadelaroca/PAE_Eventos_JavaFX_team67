@@ -16,6 +16,6 @@
     <Label text="¿A qué pantalla desea ingresar?"/>
     <VBox alignment="CENTER">
         <ListView fx:id="lsvwPantalla" prefHeight="100"/>
-        <Button fx:id="btnIniciarPantalla" text="Entrar"/>
+        <Button fx:id="btnIniciarPantalla" text="Entrar" onAction="#entrarOnClick"/>
     </VBox>
 </VBox>

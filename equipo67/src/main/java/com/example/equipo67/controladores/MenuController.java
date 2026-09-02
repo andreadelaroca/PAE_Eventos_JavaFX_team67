@@ -38,20 +38,19 @@ public class MenuController {
         }
         switch (pantalla) {
             case "Inventario de pulpería":
-                abrirPantalla("reto1-view.fxml", "Inventario de pulpería");
+                abrirPantalla("/com/example/equipo67/reto1-view.fxml", "Inventario de pulpería");
                 break;
             case "Recepción de café":
-                abrirPantalla("reto2-view.fxml", "Recepción de café");
+                abrirPantalla("/com/example/equipo67/reto2-view.fxml", "Recepción de café");
                 break;
             case "Tienda de artesanías":
-                abrirPantalla("reto3-view.fxml", "Tienda de artesanías");
+                abrirPantalla("/com/example/equipo67/reto3-view.fxml", "Tienda de artesanías");
                 break;
             default:
                 mostrarAlerta("Error", "Opción no válida seleccionada");
                 break;
     }
     }
-
     private void abrirPantalla(String fxml, String titulo) {
         try {
             FXMLLoader loader =new FXMLLoader(MenuApplication.class.getResource(fxml));
@@ -69,7 +68,6 @@ public class MenuController {
             mostrarAlerta("Error", "No se pudo abrir la pantalla seleccionada");
             e.printStackTrace();
         }
-
     }
 
     private void mostrarAlerta(String titulo, String mensaje){

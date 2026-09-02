@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.equipo67.controladores.Reto2Controller"
+      spacing="15"
+      prefWidth="750"
+      prefHeight="500"
+      style="-fx-background-color: lightgreen;">
+
+    <padding>
+        <Insets top="20"
+                right="20"
+                bottom="20"
+                left="20"/>
+    </padding>
+
+    <Label text="Recepción de Café"
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="25">
+
+        <VBox spacing="8"
+              prefWidth="230">
+
+            <Label text="Código del lote"/>
+
+            <TextField fx:id="txtCodigo"
+                       promptText="Ej: L001"/>
+
+            <Label text="Productor"/>
+
+            <TextField fx:id="txtProductor"
+                       promptText="Nombre del productor"/>
+
+            <Label text="Cantidad en kg"/>
+
+            <TextField fx:id="txtCantidad"
+                       promptText="Ej: 150"/>
+
+            <Button fx:id="btnGuardar"
+                    text="Guardar lote"
+                    onAction="#guardarLote"/>
+
+        </VBox>
+
+        <VBox spacing="8">
+
+            <Label text="Lotes recibidos"/>
+
+            <TableView fx:id="tablaLotes"
+                       prefWidth="440"
+                       prefHeight="320"
+                       onMouseClicked="#mostrarDetalles">
+
+                <columns>
+
+                    <TableColumn fx:id="colCodigo"
+                                 text="Código"
+                                 prefWidth="100"/>
+
+                    <TableColumn fx:id="colProductor"
+                                 text="Productor"
+                                 prefWidth="190"/>
+
+                    <TableColumn fx:id="colCantidad"
+                                 text="Cantidad (kg)"
+                                 prefWidth="130"/>
+
+                </columns>
+
+            </TableView>
+
+            <Label text="Doble clic para ver detalles. Clic derecho para editar o eliminar."/>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>

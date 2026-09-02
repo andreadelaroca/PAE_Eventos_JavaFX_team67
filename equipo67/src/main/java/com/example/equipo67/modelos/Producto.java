@@ -1,8 +1,10 @@
 package com.example.equipo67.modelos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Producto {
     private String codigo;
     private String nombre;

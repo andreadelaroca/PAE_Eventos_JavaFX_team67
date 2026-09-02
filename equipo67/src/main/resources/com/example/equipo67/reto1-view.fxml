@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.equipo67.controladores.Reto1Controller"
+      spacing="15"
+      prefWidth="750"
+      prefHeight="500"
+      style="-fx-background-color: lightblue;">
+
+    <padding>
+        <Insets top="20"
+                right="20"
+                bottom="20"
+                left="20"/>
+    </padding>
+
+    <Label text="Inventario de Pulpería"
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="25">
+
+        <VBox spacing="8"
+              prefWidth="230">
+
+            <Label text="Código"/>
+            <TextField fx:id="txtCodigo"
+                       promptText="Ej: P001"/>
+
+            <Label text="Nombre"/>
+            <TextField fx:id="txtNombre"
+                       promptText="Ej: Arroz"/>
+
+            <Label text="Precio"/>
+            <TextField fx:id="txtPrecio"
+                       promptText="Ej: 25.50"/>
+
+            <Label text="Cantidad"/>
+            <TextField fx:id="txtCantidad"
+                       promptText="Ej: 10"/>
+
+            <Button text="Guardar producto"
+                    onAction="#guardarProducto"/>
+
+        </VBox>
+
+        <VBox spacing="8">
+
+            <Label text="Productos registrados"/>
+
+            <TableView fx:id="tablaProductos"
+                       prefWidth="440"
+                       prefHeight="280">
+
+                <columns>
+
+                    <TableColumn fx:id="colCodigo"
+                                 text="Código"
+                                 prefWidth="80"/>
+
+                    <TableColumn fx:id="colNombre"
+                                 text="Nombre"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="colPrecio"
+                                 text="Precio"
+                                 prefWidth="90"/>
+
+                    <TableColumn fx:id="colCantidad"
+                                 text="Cantidad"
+                                 prefWidth="100"/>
+
+                </columns>
+
+            </TableView>
+
+        </VBox>
+
+    </HBox>
+
+    <Label text="Buscar producto"/>
+
+    <TextField fx:id="txtBuscar"
+               promptText="Código o nombre y presione ENTER"
+               onKeyPressed="#buscarProducto"/>
+
+    <Label fx:id="lblResultado"/>
+
+</VBox>

@@ -136,16 +136,8 @@ public class Reto1Controller {
                 return;
             }
 
-            Producto nuevoProducto =
-                    new Producto(
-                            codigo,
-                            nombre,
-                            precio,
-                            cantidad
-                    );
-
+            Producto nuevoProducto = new Producto();
             productos.add(nuevoProducto);
-
             limpiarCampos();
 
         } catch (NumberFormatException e) {
